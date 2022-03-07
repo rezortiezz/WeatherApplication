@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WeatherApplication</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="choose_location">Choose you location</string>>
+    <string name="city">Enter city</string>
+    <string name="get_weather">Get weather!</string>>
+</resources>
