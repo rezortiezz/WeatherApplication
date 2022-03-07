@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
-public class Parse {
+public class ParseWeatherData {
 
     public static double temp;
     public static double feels_like;

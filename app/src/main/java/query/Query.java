@@ -4,28 +4,58 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 
 
-public class Query {
+public class Query extends HtmlRequest{
 
-    public static String makeQuery(String city)
+    private static int lat;
+    private static int lon;
+    private static String url;
+
+    public static String getData() throws Exception
     {
-        String getter = "https://community-open-weather-map.p.rapidapi.com/weather?q=" + city + "&lat=0&lon=0&id=2172797&lang=null&units=imperial";
+        url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+api_key;
+        return makeRequest(url);
+    }
 
-        HttpResponse<String> response = Unirest.get(getter)
-                .header("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
-                .header("x-rapidapi-key", "e919279608msh8046e0f30d18ecfp1d5a9ajsna3c6137fd224")
-                .asString();
 
-        //making response look pretty good
+
+
+    /*public static String makeQuery() throws Exception
+    {
+        String url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+api_key;
+        URL website = new URL(url);
+        URLConnection connection = website.openConnection();
+        BufferedReader inp = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+        StringBuilder response = new StringBuilder();
+        String inputline;
+
+        while((inputline = inp.readLine()) != null)
+        {
+            response.append(inputline);
+        }
+
+        inp.close();
+
+        return response.toString();
+
+
+        /*making response look pretty good
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(response.getBody().toString());
         String prettyJsonString = gson.toJson(je);
 
-        return prettyJsonString;
-    }
+        return prettyJsonString;*/
+
 
 }
